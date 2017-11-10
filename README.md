@@ -277,6 +277,6 @@ you need them)
 Now your Base System is ready, you can now install your preferred
 Desktop or use arch from the command Line
 
-## Desktop installation
+# Desktop installation
 
 
