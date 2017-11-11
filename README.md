@@ -3,8 +3,13 @@
 latest Iso
 
 ## Partitioning the Harddrive
-This Guide is for EFI boot, for and EFI System make sure that
-Secure-Boot is disabled in the BIOS
+This Guide is will use EFI and LEGACY for booting.
+
+For an EFI System make sure that Secure-Boot is disabled in the BIOS.
+
+If you are on a VirtualBox don't use the Efi mode because it's causing
+problems that are difficult so solve. If you want EFI anyway see
+[here](https://askubuntu.com/a/573672) for a workaround
 
 You can check if Arch booted into EFI with this command, if the Folder
 does not exist you booted into LEGACY
@@ -30,7 +35,7 @@ partitions, one for the bootloader and the other for the LVM
     >> n
     >> enter
     >> +100M
-    >> ef00
+    >> ef00 *for EFI* | ef02 *for LEGACY*
 
     # This will be our LVM partition
     >> n
@@ -86,7 +91,7 @@ Now write the Filesystem
 
     $ mkfs.ext4 -L root -O \^64bit /dev/mapper/main-root
     $ mkfs.ext4 -L home -O \^64bit /dev/mapper/main-home
-    $ mkfs.fat -F 32 -n boot /dev/sda1
+    $ mkfs.fat -F 32 -n boot /dev/sda1 *for EFI* | mkfs.ext4 -L boot -O \^64bit /dev/sda1 *for LEGACY*
     $ mkswap -L swap /dev/mapper/main-swap  # Only if you created one!
 
 If you ever need help with LVM see
@@ -164,6 +169,8 @@ Should bring something like this
     # /dev/sda1 LABEL=boot
     UUID=blabla                                     /boot           vfat        rw,realtime,....    0   2
 
+If you're on a LEGACY System the boot is also ext4 and if it's on a SSD
+it should be adjusted too
 With swap:
 
     # /dev/sda3 LABEL=swap
@@ -177,9 +184,9 @@ If you have a swap partition
 
     UUID=blabla                                     none            swap        defaults,noatime,discard    0   0
 
-After you finised the Filesystem check, change root into the new System
+After you finished the Filesystem check, change root into the new System
 
-    $ arch-root /mnt
+    $ arch-chroot /mnt
 
 ## Configure the new System
 
@@ -231,7 +238,10 @@ Configure your Grub
 
 Now if you installed grub and efibootmgr run this command
 
+    EFI
     $ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck --debug
+    LEGCY
+    $ grub-install /boot
 
 If you run into Errors like this:
 
@@ -277,6 +287,9 @@ you need them)
 Now your Base System is ready, you can now install your preferred
 Desktop or use arch from the command Line
 
-# Desktop installation
+## Desktop installation
+First of all we need to install our Graphic drivers. To see which
+Graphics your System is using type
 
+    $ lspci |grep VGA
 
