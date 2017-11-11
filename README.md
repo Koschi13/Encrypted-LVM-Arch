@@ -291,5 +291,41 @@ Desktop or use arch from the command Line
 First of all we need to install our Graphic drivers. To see which
 Graphics your System is using type
 
-    $ lspci |grep VGA
+    $ lspci | grep VGA
 
+This should print something like this
+
+	00:02.0	VGA compatible controller: InnoTek Systemberatung GmbH VirtualBox Graphics Adapter
+
+Now you can look [here(de)](https://wiki.archlinux.de/title/Anleitung_f%C3%BCr_Einsteiger#Grafiktreiber_installieren)
+for a full list of aviable Graphic drivers or type
+
+	$ pacman -Ss xf86-video | less
+
+In my case (Virtual Box) I installed virtualbox-guest-utils
+
+	$ pacman -S virtualbox-guest-utils
+
+If you are on a Notebook you can install this Touchpad driver
+
+	$ pacman -S xf86-input-synaptics
+
+Now we need our Display Manager, if you don't know which to take take the XORG
+which can handle every Window-Manager. If you want a specific one for your 
+Window-Manager see [here](https://wiki.archlinux.org/index.php/Display_manager)
+
+This installation will take the SDDM Display-Manager (Usually used for KDE) and XFCE as Desktop-Manager
+
+	$ pacman -S xfce4
+	$ pacman -S sddm
+	$ sddm --example-config > /etc/sddm.conf
+	$ nano /etc/sddm.conf
+	>> Session=startxfce4
+	>> save and exit
+	$ systemctl enable sddm
+	$ systemctl start sddm
+
+After the last Command the Graphics should start and SDDM will promt for your User
+
+Now you have your System ready to use, all basic functionallity is given. 
+You can now enjoy your Arch Linux
