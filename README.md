@@ -234,6 +234,8 @@ Configure your Grub
 
     $ nano /etc/default/grub
     >> GRUB_CMDLINE_LINUX="cryptdevice=/dev/sda2:lvm"
+    # If Grub already has something in here add lvm, do not delete the oder Modules
+    >> GRUB_PRELOAD_MODULES="lvm"
     >> sve and exit
 
 Now if you installed grub and efibootmgr run this command
