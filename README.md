@@ -241,9 +241,9 @@ Configure your Grub
 
 Now if you installed grub and efibootmgr run this command
 
-    EFI
+    # EFI
     $ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=arch_grub --recheck --debug
-    LEGCY
+    # LEGACY
     $ grub-install /boot
 
 If you run into Errors like this:
