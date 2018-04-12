@@ -104,6 +104,7 @@ Mount the Filesystem
     $ mount /dev/mapper/main-home /mnt/home
     $ mkdir /mnt/boot
     $ mount /dev/sda1 /mnt/boot
+    $ swapon /dev/mapper/main-swap # If swap was ceated
 
 ## Install the Base System
 
