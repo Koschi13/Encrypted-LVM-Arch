@@ -237,7 +237,11 @@ Configure your Grub
     >> GRUB_CMDLINE_LINUX="cryptdevice=/dev/sda2:lvm"
     # If Grub already has something in here add lvm, do not delete the oder Modules
     >> GRUB_PRELOAD_MODULES="lvm"
-    >> sve and exit
+    >> save and exit
+
+Now configure your grub with:
+
+    $ grub-mkconfig -o /boot/grub/grub.cfg
 
 Now if you installed grub and efibootmgr run this command
 
