@@ -266,7 +266,7 @@ $ hwclock --systohc
 Generate the locale
 
 ```bash
-$ nano /etc/locale.gen
+$ vim /etc/locale.gen
   >> Uncomment every localisation for your Language e.g.:
   >> en_US.UTF-8 UTF-8
   >> en_US ISO-8859-1
@@ -284,7 +284,7 @@ Load modules at boot (Change the Values MODULES and HOOKS to look like
 below
 
 ```bash
-$ nano /etc/mkinitcpio.conf
+$ vim /etc/mkinitcpio.conf
   >> MODULES=(ext4)
   >> HOOKS=(base udev autodetect modconf block keyboard keymap encrypt lvm2 filesystems fsck shutdown)
 ```
@@ -292,7 +292,7 @@ $ nano /etc/mkinitcpio.conf
 Generate Kernel
 
 ```bash
-$ mkinitcpio-p linux  # If you get an Error like preset not Found --> the l is lowercase
+$ mkinitcpio -p linux  # If you get an Error like preset not Found --> the l is lowercase
 ```
 
 Set root password (Don't use your User password here, think of a new one
