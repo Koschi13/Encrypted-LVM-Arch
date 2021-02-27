@@ -123,8 +123,8 @@ Now write the Filesystem:
 $ mkfs.ext4 -L root /dev/mapper/main-root
 $ mkfs.ext4 -L home /dev/mapper/main-home
 
-# EFI
-$ mkfs.fat -F 32 -n boot /dev/sda1
+# EFI - Warning when using lowercase: lowercase labels might not work properly with DOS or Windows
+$ mkfs.fat -F 32 -n BOOT /dev/sda1
 # LEGACY - disable 64bit for syslinux to work
 $ mkfs.ext4 -L boot -O '^64bit' /dev/sda1
 
