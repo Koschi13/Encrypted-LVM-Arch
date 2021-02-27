@@ -325,6 +325,12 @@ $ passwd
   *Secred Password*
 ```
 
+Enable `dhcpcd` so you have internet after reboot.
+
+```bash
+$ systemctl enable dhcpcd.service
+```
+
 Configure your Grub
 
 ```bash
