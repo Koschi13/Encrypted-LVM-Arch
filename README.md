@@ -114,16 +114,22 @@ $ lvcreate -L XGB -n swap main  # Only do this if you want to hibernate or open 
                                 # that are larger than your RAM. The size should be
                                 # at least the size of your RAM, if you wan't to
                                 # hibernate.
-$ lvcreate -l 100%FREE -n home main  # Will give home the rest of the aviable Space.
+$ lvcreate -l 100%FREE -n home main  # Will give home the rest of the aviable Space. Note the lowercase l
 ```
 
 Now write the Filesystem:
 
 ```bash
-$ mkfs.ext4 -L root -O \^64bit /dev/mapper/main-root
-$ mkfs.ext4 -L home -O \^64bit /dev/mapper/main-home
-$ mkfs.fat -F 32 -n boot /dev/sda1 *for EFI* | mkfs.ext4 -L boot -O \^64bit /dev/sda1 *for LEGACY*
-$ mkswap -L swap /dev/mapper/main-swap  # Only if you created one!
+$ mkfs.ext4 -L root /dev/mapper/main-root
+$ mkfs.ext4 -L home /dev/mapper/main-home
+
+# EFI
+$ mkfs.fat -F 32 -n boot /dev/sda1
+# LEGACY - disable 64bit for syslinux to work
+$ mkfs.ext4 -L boot -O '^64bit' /dev/sda1
+
+# Only if you created the swap partition!
+$ mkswap -L swap /dev/mapper/main-swap
 ```
 
 If you ever need help with LVM see
