@@ -125,7 +125,7 @@ $ mkfs.ext4 -L home /dev/mapper/main-home
 
 # EFI - Warning when using lowercase: lowercase labels might not work properly with DOS or Windows
 $ mkfs.fat -F 32 -n BOOT /dev/sda1
-# LEGACY - disable 64bit for syslinux to work
+# LEGACY - disable 64bit
 $ mkfs.ext4 -L boot -O '^64bit' /dev/sda1
 
 # Only if you created the swap partition!
