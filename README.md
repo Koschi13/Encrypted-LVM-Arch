@@ -196,11 +196,13 @@ Now download and install the Base System
 Optional packages are:
 1. [intel-ucode](https://wiki.archlinux.org/index.php/Microcode),
  if you have an Intel Kernel
-2. [wpa_supplicant](https://wiki.archlinux.org/index.php/WPA_supplicant),
+2. [amd-ucode](https://wiki.archlinux.org/index.php/Microcode),
+ if you have an AMD Kernel
+3. [wpa_supplicant](https://wiki.archlinux.org/index.php/WPA_supplicant),
  if you're using WLAN
-3. [wifi-menu(dialog)](https://www.archlinux.org/packages/core/x86_64/dialog/),
+4. [wifi-menu(dialog)](https://www.archlinux.org/packages/core/x86_64/dialog/),
  if you want to setup your wifi with the Console
-4. the others can be installed, you will know if you need them so I
+5. the others can be installed, you will know if you need them so I
   won't explain them here.
 
 install everything you need for your System with (`[]` are optional dependencies):
