@@ -165,10 +165,23 @@ $ dhcpcd
 
 Now configure the Mirrors, first backup the File
 
+<details>
+  <summary>Old version</summary>
+  
+  For some reason, the old mirrorlist format isn't used anymore (2021.02.01) and therefore this code won't work anymore...
+  
+  ```bash
+  $ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+  # XXX is your region e.g. Germany. use cat /etc/pacman.d/mirrorlist to see examples
+  $ grep -E -A 1 ".*XXX.*$" /etc/pacman.d/mirrorlist.bak | sed '/--/d' > /etc/pacman.d/mirrorlist
+  ```
+  
+</details>
+
 ```bash
 $ cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-# XXX is your region e.g. Germany. use cat /etc/pacman.d/mirrorlist to see examples
-$ grep -E -A 1 ".*XXX.*$" /etc/pacman.d/mirrorlist.bak | sed '/--/d' > /etc/pacman.d/mirrorlist
+# XX is your country domain (de for Germany)
+$ grep -E  ".*\.XX.*$" /etc/pacman.d/mirrorlist.bak > /etc/pacman.d/mirrorlist
 ```
 
 Now check if everything went right (You should only see Your entered
